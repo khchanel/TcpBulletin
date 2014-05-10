@@ -1,5 +1,6 @@
-﻿using ProtoBuf;
-using System;
+﻿using System;
+
+using ProtoBuf;
 
 namespace TcpBulletinCommon
 {

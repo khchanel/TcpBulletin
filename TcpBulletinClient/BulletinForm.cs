@@ -1,15 +1,12 @@
-﻿using ProtoBuf;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Net;
+﻿using System;
 using System.Net.Sockets;
-using System.Text;
+using System.Net;
 using System.Windows.Forms;
+
+using ProtoBuf;
+
 using TcpBulletinCommon;
+
 
 namespace TcpBulletinClient
 {
@@ -34,7 +31,8 @@ namespace TcpBulletinClient
 
                 using (NetworkStream stream = client.GetStream())
                 {
-                    this.statusLogBox.AppendText("CLIENT: Got connection; sending data..." + Environment.NewLine);
+                    this.statusLogBox.AppendText("CLIENT: Got connection; sending message..." + Environment.NewLine);
+                    this.statusLogBox.AppendText(msg.ToString() + Environment.NewLine);
 
                     // send data to server
                     Serializer.SerializeWithLengthPrefix(stream, msg, PrefixStyle.Base128);

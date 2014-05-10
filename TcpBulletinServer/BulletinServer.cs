@@ -1,18 +1,20 @@
-﻿using ProtoBuf;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
+using System.Collections.Generic;
 using System.Threading;
+
+using ProtoBuf;
+
 using TcpBulletinCommon;
+
 
 namespace TcpBulletinServer
 {
     /// <summary>
     /// Bulletin Server implements the server using TCP
     /// </summary>
-    class BulletinServer
+    public class BulletinServer
     {
         private TcpListener _listener;
         private List<TcpClient> _clients;
