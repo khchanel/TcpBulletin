@@ -74,11 +74,23 @@ namespace TcpBulletinServer
 
             using (NetworkStream stream = client.GetStream())
             {
-                // Deserialize received stream and write to console
-                Console.WriteLine("Server: Client connected; reading message");
-                BulletinMessage msg = Serializer.DeserializeWithLengthPrefix<BulletinMessage>(stream, PrefixStyle.Base128);
-                Console.WriteLine("Server: Received '" +  msg.ToString() +"'");
+                
 
+                Console.WriteLine("Server: Client connected; reading message");
+
+                // Deserialize received message
+                try
+                {
+                    BulletinMessage msg = Serializer.DeserializeWithLengthPrefix<BulletinMessage>(stream, PrefixStyle.Base128);
+                    Console.WriteLine("Server: Received '" + msg.ToString() + "'");
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine("Server: ERROR - " + Environment.NewLine);
+                    Console.Error.WriteLine(ex.ToString());
+                }
+
+                
                 Console.WriteLine("Server: Closing connection...");
                 stream.Close();
                 client.Close();
